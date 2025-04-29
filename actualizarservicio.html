@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar Servicio - Autolavado</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        
+        .update-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .update-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 12px;
+        }
+        
+        .update-divider {
+            height: 3px;
+            background-color: #3498db;
+            width: 80px;
+            margin: 0 auto;
+            border-radius: 3px;
+        }
+        
+        .status-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 25px;
+        }
+        
+        .status-option {
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 16px 20px;
+            font-size: 18px;
+            color: #34495e;
+            border-radius: 0 8px 8px 0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .status-option:hover {
+            background-color: #e8f4fc;
+            transform: translateX(5px);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .status-option.selected {
+            background-color: #3498db;
+            color: white;
+            border-left-color: #2c3e50;
+        }
+        
+        .status-option.selected i {
+            color: white;
+        }
+        
+        .status-option i {
+            color: #3498db;
+            font-size: 20px;
+        }
+        
+        .submit-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 16px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+            margin-top: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+                
+        .submit-btn:disabled {
+            background-color: #299ea7;
+            cursor: not-allowed;
+        }
+        
+    
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="header">
+            <a href="menu_empleado.html" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <div class="header-title">Autolavado App</div>
+            <div class="header-icons">
+                <a href="#" class="icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </a>
+                <a href="#" class="icon">
+                    <i class="fas fa-headset"></i>
+                </a>
+            </div>
+        </div>
+        
+        <div class="content-wrapper">
+            <div class="update-header">
+                <h1 class="update-title">Actualizar Servicio</h1>
+                <div class="update-divider"></div>
+            </div>
+            
+            <div class="status-options">
+                <div class="status-option" onclick="selectStatus(this)">
+                    <span>En proceso</span>
+                    <i class="fas fa-spinner"></i>
+                </div>
+                
+                <div class="status-option" onclick="selectStatus(this)">
+                    <span>En espera</span>
+                    <i class="fas fa-pause"></i>
+                </div>
+                
+                <div class="status-option" onclick="selectStatus(this)">
+                    <span>Reprogramado</span>
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                
+                <div class="status-option" onclick="selectStatus(this)">
+                    <span>Finalizado</span>
+                    <i class="fas fa-check-circle"></i>
+                </div>
+            </div>
+            
+            <button id="submitBtn" class="submit-btn" disabled>
+                <i class="fas fa-save"></i>
+                <span>Actualizar Estado</span>
+            </button>
+        </div>
+        
+        <div class="footer">
+            Autolavado App © 2025 - Todos los derechos reservados
+        </div>
+    </div>
+
+    <script>
+        let selectedStatus = null;
+        
+        // Función para seleccionar estado
+        function selectStatus(element) {
+            // Remover selección anterior
+            document.querySelectorAll('.status-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Marcar nuevo seleccionado
+            element.classList.add('selected');
+            selectedStatus = element.querySelector('span').textContent;
+            
+            // Habilitar botón
+            document.getElementById('submitBtn').disabled = false;
+        }
+        
+        // Función para el botón de retroceso
+        document.querySelector('.back-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = 'menu_empleado.html';
+        });
+        
+        // Función para el icono de notificaciones
+        document.querySelector('.fa-bell').parentElement.addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Tienes 3 notificaciones nuevas');
+        });
+        
+        // Función para el icono de soporte
+        document.querySelector('.fa-headset').parentElement.addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Soporte técnico: contacto@autolavado.com');
+        });
+        
+        // Función para actualizar estado
+        document.getElementById('submitBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            if(selectedStatus) {
+                alert(`Estado actualizado a: ${selectedStatus}`);
+                // Aquí iría la lógica para guardar el estado
+                window.location.href = 'menu_empleado.html';
+            }
+        });
+    </script>
+</body>
+</html>
