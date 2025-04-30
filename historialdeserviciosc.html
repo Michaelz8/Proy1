@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menú Empleado - Autolavado</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Historial de Servicios - Autolavado</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -24,7 +23,7 @@
         
         .main-container {
             width: 100%;
-            max-width: 500px;
+            max-width: 800px;
             background-color: #cad0d8;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -115,60 +114,71 @@
             padding: 30px 25px;
         }
         
-        .menu-header {
+        .history-header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
         
-        .menu-title {
+        .history-title {
             font-size: 28px;
             font-weight: bold;
             color: #2c3e50;
             margin-bottom: 12px;
         }
         
-        .menu-divider {
+        .history-divider {
             height: 3px;
             background-color: #3498db;
             width: 80px;
-            margin: 0 auto;
+            margin: 0 auto 20px;
             border-radius: 3px;
         }
         
-        .menu-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
             margin-top: 20px;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         
-        .menu-item {
-            background-color: #f8f9fa;
-            border-left: 4px solid #ced9e0;
-            padding: 20px 15px;
-            font-size: 16px;
+        .history-table th {
+            background-color: #2c3e50;
+            color: white;
+            padding: 14px 16px;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        .history-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #e0e0e0;
             color: #34495e;
-            border-radius: 0 8px 8px 0;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            min-height: 100px;
-            justify-content: center;
         }
         
-        .menu-item:hover {
+        .history-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .history-table tr:hover {
             background-color: #e8f4fc;
-            transform: translateY(-3px);
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
         }
         
-        .menu-item i {
-            color: #3498db;
-            font-size: 24px;
-            margin-bottom: 10px;
+        .status-pending {
+            color: #e67e22;
+            font-weight: bold;
+        }
+        
+        .status-completed {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .status-cancelled {
+            color: #e74c3c;
+            font-weight: bold;
         }
         
         .footer {
@@ -179,19 +189,31 @@
             font-size: 12px;
             border-top: 1px solid #eaeaea;
         }
+        
+        @media (max-width: 600px) {
+            .history-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .header-title {
+                font-size: 18px;
+                padding: 0 30px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="main-container">
         <div class="header">
-            <a href="rol.html" class="back-button">
+            <a href="rolcliente.html" class="back-button">
                 <i class="fas fa-arrow-left"></i>
             </a>
             <div class="header-title">Autolavado App</div>
             <div class="header-icons">
                 <a href="#" class="icon">
                     <i class="fas fa-bell"></i>
-                    <span class="notification-badge">3</span>
+                    <span class="notification-badge">1</span>
                 </a>
                 <a href="#" class="icon">
                     <i class="fas fa-headset"></i>
@@ -200,64 +222,77 @@
         </div>
         
         <div class="content-wrapper">
-            <div class="menu-header">
-                <h1 class="menu-title">Empleado</h1>
-                <div class="menu-divider"></div>
+            <div class="history-header">
+                <h1 class="history-title">Historial de Servicios</h1>
+                <div class="history-divider"></div>
             </div>
             
-            <div class="menu-grid">
-                <div class="menu-item" onclick="window.location.href='consultadeservicio.html'">
-                    <i class="fas fa-search"></i>
-                    <span>Consultar Servicios</span>
-                </div>
-                
-                <div class="menu-item" onclick="window.location.href='actualizarservicio.html'">
-                    <i class="fas fa-sync-alt"></i>
-                    <span>Actualizar Servicios</span>
-                </div>
-                
-                <div class="menu-item" onclick="window.location.href='reportee.html'">
-                    <i class="fas fa-chart-line"></i>
-                    <span>Reporte </span>
-                </div>
-                
-                <div class="menu-item" onclick="window.location.href='modificarempleado.html'">
-                    <i class="fas fa-user-edit"></i>
-                    <span>Modificar Cuenta</span>
-                </div>
-                
-                <div class="menu-item" onclick="window.location.href='historialdeserviciose.html'">
-                    <i class="fas fa-history"></i>
-                    <span>Historial de Servicios</span>
-                </div>
-                
-                <!-- Empty item to maintain grid alignment -->
-                <div class="menu-item" style="visibility: hidden;"></div>
-            </div>
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Precio</th>
+                        <th>Servicio</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>15/04/2025</td>
+                        <td>$120.00</td>
+                        <td>Lavado Completo</td>
+                        <td class="status-completed">Completado</td>
+                    </tr>
+                    <tr>
+                        <td>12/04/2025</td>
+                        <td>$180.00</td>
+                        <td>Lavado + Polichada</td>
+                        <td class="status-completed">Completado</td>
+                    </tr>
+                    <tr>
+                        <td>08/04/2025</td>
+                        <td>$150.00</td>
+                        <td>Lavado Premium</td>
+                        <td class="status-completed">Completado</td>
+                    </tr>
+                    <tr>
+                        <td>03/04/2025</td>
+                        <td>$95.00</td>
+                        <td>Lavado con Cera</td>
+                        <td class="status-cancelled">Cancelado</td>
+                    </tr>
+                    <tr>
+                        <td>28/03/2025</td>
+                        <td>$120.00</td>
+                        <td>Lavado Completo</td>
+                        <td class="status-completed">Completado</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         
         <div class="footer">
-            Autolavado App © 2024 - Todos los derechos reservados
+            Autolavado App © 2025 - Todos los derechos reservados
         </div>
     </div>
 
     <script>
-        // Función para el botón de retroceso
+        // Back button functionality
         document.querySelector('.back-button').addEventListener('click', function(e) {
             e.preventDefault();
-            window.location.href = 'rol.html';
+            window.location.href = 'rolcliente.html';
         });
         
-        // Función para el icono de notificaciones
+        // Notification icon functionality
         document.querySelector('.fa-bell').parentElement.addEventListener('click', function(e) {
             e.preventDefault();
-            alert('Tienes 3 notificaciones nuevas');
+            alert('Tienes 1 notificación nueva');
         });
         
-        // Función para el icono de soporte
+        // Support icon functionality
         document.querySelector('.fa-headset').parentElement.addEventListener('click', function(e) {
             e.preventDefault();
-            alert('Soporte técnico: contacto@autolavado.com');
+            alert('Contacta a soporte: soporte@autolavado.com');
         });
     </script>
 </body>

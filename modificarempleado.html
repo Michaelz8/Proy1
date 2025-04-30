@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menú Empleado - Autolavado</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Modificar Datos - Autolavado</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -115,60 +114,80 @@
             padding: 30px 25px;
         }
         
-        .menu-header {
+        .modify-header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
         
-        .menu-title {
+        .modify-title {
             font-size: 28px;
             font-weight: bold;
             color: #2c3e50;
             margin-bottom: 12px;
         }
         
-        .menu-divider {
+        .modify-divider {
             height: 3px;
             background-color: #3498db;
             width: 80px;
-            margin: 0 auto;
+            margin: 0 auto 20px;
             border-radius: 3px;
         }
         
-        .menu-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-            margin-top: 20px;
-        }
-        
-        .menu-item {
-            background-color: #f8f9fa;
-            border-left: 4px solid #ced9e0;
-            padding: 20px 15px;
-            font-size: 16px;
-            color: #34495e;
-            border-radius: 0 8px 8px 0;
-            transition: all 0.3s ease;
-            cursor: pointer;
+        .modify-form {
             display: flex;
             flex-direction: column;
+            gap: 16px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .form-group label {
+            font-size: 16px;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group select {
+            padding: 14px 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: white;
+        }
+        
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233498db' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 15px;
+        }
+        
+        .submit-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 16px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+            display: flex;
             align-items: center;
-            text-align: center;
-            min-height: 100px;
             justify-content: center;
+            gap: 10px;
         }
         
-        .menu-item:hover {
-            background-color: #e8f4fc;
-            transform: translateY(-3px);
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        .menu-item i {
-            color: #3498db;
-            font-size: 24px;
-            margin-bottom: 10px;
+        .submit-btn:hover {
+            background-color: #2980b9;
         }
         
         .footer {
@@ -179,19 +198,25 @@
             font-size: 12px;
             border-top: 1px solid #eaeaea;
         }
+        
+        hr {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 20px 0;
+        }
     </style>
 </head>
 <body>
     <div class="main-container">
         <div class="header">
-            <a href="rol.html" class="back-button">
+            <a href="rolempleado.html" class="back-button">
                 <i class="fas fa-arrow-left"></i>
             </a>
             <div class="header-title">Autolavado App</div>
             <div class="header-icons">
                 <a href="#" class="icon">
                     <i class="fas fa-bell"></i>
-                    <span class="notification-badge">3</span>
+                    <span class="notification-badge">1</span>
                 </a>
                 <a href="#" class="icon">
                     <i class="fas fa-headset"></i>
@@ -200,64 +225,88 @@
         </div>
         
         <div class="content-wrapper">
-            <div class="menu-header">
-                <h1 class="menu-title">Empleado</h1>
-                <div class="menu-divider"></div>
+            <div class="modify-header">
+                <h1 class="modify-title">Modificar Cuenta</h1>
+                <div class="modify-divider"></div>
             </div>
             
-            <div class="menu-grid">
-                <div class="menu-item" onclick="window.location.href='consultadeservicio.html'">
-                    <i class="fas fa-search"></i>
-                    <span>Consultar Servicios</span>
+            <form class="modify-form">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" placeholder="Ingrese su nombre" value="Juan Pérez" required>
                 </div>
                 
-                <div class="menu-item" onclick="window.location.href='actualizarservicio.html'">
-                    <i class="fas fa-sync-alt"></i>
-                    <span>Actualizar Servicios</span>
+                <div class="form-group">
+                    <label for="usuario">Usuario</label>
+                    <input type="text" id="usuario" placeholder="Ingrese su nombre de usuario" value="juanperez" required>
                 </div>
                 
-                <div class="menu-item" onclick="window.location.href='reportee.html'">
-                    <i class="fas fa-chart-line"></i>
-                    <span>Reporte </span>
+                <div class="form-group">
+                    <label for="fecha_nacimiento">Fecha de Nacimiento</label>
+                    <input type="date" id="fecha_nacimiento" required>
                 </div>
                 
-                <div class="menu-item" onclick="window.location.href='modificarempleado.html'">
-                    <i class="fas fa-user-edit"></i>
-                    <span>Modificar Cuenta</span>
+                <div class="form-group">
+                    <label for="correo">Correo</label>
+                    <input type="email" id="correo" placeholder="Ingrese su correo electrónico" value="juan@example.com" required>
                 </div>
                 
-                <div class="menu-item" onclick="window.location.href='historialdeserviciose.html'">
-                    <i class="fas fa-history"></i>
-                    <span>Historial de Servicios</span>
+                <div class="form-group">
+                    <label for="tipo_documento">Tipo de Documento</label>
+                    <select id="tipo_documento" required>
+                        <option value="cedula">Cédula</option>
+                        <option value="pasaporte">Pasaporte</option>
+                        <option value="dni">DNI</option>
+                        <option value="otro">Otro</option>
+                    </select>
                 </div>
                 
-                <!-- Empty item to maintain grid alignment -->
-                <div class="menu-item" style="visibility: hidden;"></div>
-            </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono</label>
+                    <input type="tel" id="telefono" placeholder="Ingrese su número de teléfono" value="+57 123 456 7890" required>
+                </div>
+                
+                <hr>
+                
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i>
+                    <span>Enviar</span>
+                </button>
+            </form>
         </div>
         
         <div class="footer">
-            Autolavado App © 2024 - Todos los derechos reservados
+            Autolavado App © 2025 - Todos los derechos reservados
         </div>
     </div>
 
     <script>
-        // Función para el botón de retroceso
+        // Back button functionality
         document.querySelector('.back-button').addEventListener('click', function(e) {
             e.preventDefault();
-            window.location.href = 'rol.html';
+            window.location.href = 'rolempleado.html';
         });
         
-        // Función para el icono de notificaciones
+        // Set default birth date (example)
+        document.getElementById('fecha_nacimiento').value = '1990-01-15';
+        
+        // Form submission
+        document.querySelector('.modify-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Datos modificados correctamente');
+            // Here you would add logic to save the changes
+        });
+        
+        // Notification icon functionality
         document.querySelector('.fa-bell').parentElement.addEventListener('click', function(e) {
             e.preventDefault();
-            alert('Tienes 3 notificaciones nuevas');
+            alert('Tienes 1 notificación nueva');
         });
         
-        // Función para el icono de soporte
+        // Support icon functionality
         document.querySelector('.fa-headset').parentElement.addEventListener('click', function(e) {
             e.preventDefault();
-            alert('Soporte técnico: contacto@autolavado.com');
+            alert('Contacta a soporte: soporte@autolavado.com');
         });
     </script>
 </body>
